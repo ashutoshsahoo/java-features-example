@@ -5,10 +5,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.ashu.practice</groupId>
-    <artifactId>java-17-practice</artifactId>
+    <artifactId>java-features-example</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 
-    <name>java-17-practice</name>
+    <name>java-features-example</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
