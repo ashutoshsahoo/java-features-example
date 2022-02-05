@@ -39,3 +39,4 @@ out/
 
 surefire-reports/
 target/
+/employees.ser
