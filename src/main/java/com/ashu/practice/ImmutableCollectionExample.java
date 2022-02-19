@@ -22,4 +22,43 @@ public class ImmutableCollectionExample {
 [1, 5, 3]
 {1=12, 3=35, 2=25}
  */
+
+    public static class TextBlockExample {
+        public static void main(String[] args) {
+            String logXml = """
+                    <configuration>                               
+                        <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+                            <!-- encoders are assigned the type
+                                 ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
+                            <encoder>
+                                <pattern>%d{hh:mm:ss.SSS} [%thread] %highlight(%-5level) %logger{36}.%M\\(%line\\) - %msg%n</pattern>
+                            </encoder>
+                        </appender>
+                                    
+                        <logger name="com.ashu.practice" level="DEBUG"/>
+                        <root level="INFO">
+                            <appender-ref ref="STDOUT"/>
+                        </root>
+                    </configuration>
+                    """;
+            System.out.println(logXml);
+        }
+    /* O/P
+    <configuration>
+        <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+            <!-- encoders are assigned the type
+                 ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
+            <encoder>
+                <pattern>%d{hh:mm:ss.SSS} [%thread] %highlight(%-5level) %logger{36}.%M\(%line\) - %msg%n</pattern>
+            </encoder>
+        </appender>
+
+        <logger name="com.ashu.practice" level="DEBUG"/>
+        <root level="INFO">
+            <appender-ref ref="STDOUT"/>
+        </root>
+    </configuration>
+     */
+
+    }
 }

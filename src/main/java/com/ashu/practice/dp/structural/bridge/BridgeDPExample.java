@@ -8,11 +8,13 @@ enum OsType {
 
 interface FileDownloader {
     Object download();
+
     boolean store(Object content);
 }
 
 interface FileDownloadProvider {
     Object downloadFile();
+
     boolean storeFile(Object content);
 }
 
@@ -23,13 +25,12 @@ public class BridgeDPExample {
         OsType[] values = OsType.values();
         int size = values.length;
         OsType os = values[random.nextInt(size)];
-        FileDownloadProvider fileDownloadProvider = null;
-
-        switch (os) {
-            case LINUX -> fileDownloadProvider = new LinuxFileDownloadProvider();
-            case WINDOWS -> fileDownloadProvider = new WindowsFileDownloadProvider();
-            case MAC -> fileDownloadProvider = new MacFileDownloadProvider();
-        }
+        System.out.println("OS type : " + os);
+        FileDownloadProvider fileDownloadProvider = switch (os) {
+            case LINUX -> new LinuxFileDownloadProvider();
+            case WINDOWS -> new WindowsFileDownloadProvider();
+            case MAC -> new MacFileDownloadProvider();
+        };
 
         FileDownloader fileDownloader = new FileDownloaderImpl(fileDownloadProvider);
         Object content = fileDownloader.download();
