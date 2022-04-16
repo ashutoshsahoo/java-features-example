@@ -150,7 +150,7 @@ It's valuable to know how to use the module system from the command line
 * illegal-access=permit|warn|deny – Either relax strong encapsulation by showing a single global warning, shows every
   warning, or fails with errors. The default is permit.
 
-## References
+## Reference
 
 * [Understanding Java 9 Modules](https://www.oracle.com/in/corporate/features/understanding-java-9-modules.html)
 * [Java Modules Tutorial](https://howtodoinjava.com/java9/java-9-modules-tutorial/)
