@@ -13,6 +13,11 @@ public class AtomicIntegerExample {
         t2.join();
         System.out.println("Processing count=" + runnableTask.getCount());
     }
+/*
+Count=8
+Count=8
+Processing count=8
+ */
 }
 
 class RunnableTask implements Runnable {

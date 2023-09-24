@@ -42,19 +42,19 @@ public class SerializeExample {
         }
     }
 /*
-10:23:05.219 [main] INFO  com.ashu.practice.serial.Employee.<init>(62) - Employee constructor with params
-10:23:05.235 [main] DEBUG c.a.practice.serial.SerializeExample.main(13) - Employee{id=1, name='ashutosh', company='null', companyId='1001'}
-10:23:05.235 [main] DEBUG c.a.practice.serial.SerializeExample.main(15) - Employee{id=1, name='ashutosh', company='tcs', companyId='1001'}
-10:23:05.235 [main] INFO  c.a.practice.serial.SerializeExample.main(17) - Serialization start
-10:23:05.235 [main] INFO  com.ashu.practice.serial.Employee.writeReplace(123) - write resolve called
-10:23:05.235 [main] INFO  com.ashu.practice.serial.Employee.writeObject(104) - Serializing employee
-10:23:05.235 [main] INFO  c.a.practice.serial.SerializeExample.main(23) - Serialization complete
-10:23:05.235 [main] INFO  c.a.practice.serial.SerializeExample.main(30) - Deserialization start
-10:23:05.250 [main] INFO  com.ashu.practice.serial.Employee.readObject(113) - Deserializing employee
-10:23:05.250 [main] INFO  com.ashu.practice.serial.Employee.readResolve(129) - read resolve method called
-10:23:05.250 [main] INFO  com.ashu.practice.serial.Employee.validateObject(135) - Validating employee object
-10:23:05.250 [main] DEBUG c.a.practice.serial.SerializeExample.main(37) - Employee{id=1, name='ashutosh', company='tcs', companyId='1001'}
-10:23:05.250 [main] INFO  c.a.practice.serial.SerializeExample.main(39) - Deserialization complete
+08:45:44.918 [main] INFO  com.ashu.practice.serial.Employee.<init>(77) - Employee constructor with params
+08:45:44.932 [main] DEBUG c.a.practice.serial.SerializeExample.main(13) - Employee{id=1, name='ashutosh', company='null', companyId='1001'}
+08:45:44.932 [main] DEBUG c.a.practice.serial.SerializeExample.main(15) - Employee{id=1, name='ashutosh', company='tcs', companyId='1001'}
+08:45:44.933 [main] INFO  c.a.practice.serial.SerializeExample.main(17) - Serialization start
+08:45:44.943 [main] INFO  com.ashu.practice.serial.Employee.writeReplace(138) - write replace called
+08:45:44.944 [main] INFO  com.ashu.practice.serial.Employee.writeObject(119) - writeObject: Serializing employee
+08:45:44.945 [main] INFO  c.a.practice.serial.SerializeExample.main(23) - Serialization complete
+08:45:44.945 [main] INFO  c.a.practice.serial.SerializeExample.main(30) - Deserialization start
+08:45:44.953 [main] INFO  com.ashu.practice.serial.Employee.readObject(128) - readObject: Deserializing employee
+08:45:44.953 [main] INFO  com.ashu.practice.serial.Employee.readResolve(144) - read resolve method called
+08:45:44.954 [main] INFO  com.ashu.practice.serial.Employee.validateObject(150) - Validating employee object
+08:45:44.954 [main] DEBUG c.a.practice.serial.SerializeExample.main(37) - Employee{id=1, name='ashutosh', company='tcs', companyId='1001'}
+08:45:44.954 [main] INFO  c.a.practice.serial.SerializeExample.main(39) - Deserialization complete
  */
 }
 
@@ -116,7 +116,7 @@ class Employee implements Serializable, ObjectInputValidation, Comparable<Employ
 
     @Serial
     private void writeObject(ObjectOutputStream oos) throws IOException {
-        log.info("Serializing employee");
+        log.info("writeObject: Serializing employee");
         oos.writeInt(id);
         oos.writeUTF(name);
         oos.writeLong(companyId);
@@ -125,7 +125,7 @@ class Employee implements Serializable, ObjectInputValidation, Comparable<Employ
 
     @Serial
     private void readObject(ObjectInputStream ois) throws IOException, ClassNotFoundException {
-        log.info("Deserializing employee");
+        log.info("readObject: Deserializing employee");
         ois.registerValidation(this, 0);
         id = ois.readInt();
         name = ois.readUTF();
@@ -135,7 +135,7 @@ class Employee implements Serializable, ObjectInputValidation, Comparable<Employ
 
     @Serial
     private Object writeReplace() throws ObjectStreamException {
-        log.info("write resolve called");
+        log.info("write replace called");
         return this;
     }
 

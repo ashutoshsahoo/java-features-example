@@ -1,0 +1,41 @@
+plugins {
+    id 'application'
+    id 'java'
+    id 'idea'
+}
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    lombokVersion = '1.18.26'
+    jmhVersion = '1.35'
+    slf4jApiVersion = '2.0.5'
+    logbackVersion = '1.4.7'
+}
+
+
+dependencies {
+    implementation "org.openjdk.jmh:jmh-core:${jmhVersion}"
+    implementation "org.openjdk.jmh:jmh-generator-annprocess:${jmhVersion}"
+    implementation "org.slf4j:slf4j-api:${slf4jApiVersion}"
+    runtimeOnly "ch.qos.logback:logback-core:${logbackVersion}"
+    runtimeOnly "ch.qos.logback:logback-classic:${logbackVersion}"
+    compileOnly "org.projectlombok:lombok:${lombokVersion}"
+    annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.0'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+application {
+    mainClass = 'com.ashu.practice.App'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+jar {
+    enabled = false
+}
