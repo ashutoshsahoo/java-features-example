@@ -13,6 +13,7 @@ ext {
     jmhVersion = '1.35'
     slf4jApiVersion = '2.0.5'
     logbackVersion = '1.4.7'
+    junitJupiterVersion = '5.10.0'
 }
 
 
@@ -24,7 +25,7 @@ dependencies {
     runtimeOnly "ch.qos.logback:logback-classic:${logbackVersion}"
     compileOnly "org.projectlombok:lombok:${lombokVersion}"
     annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
-    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.0'
+    testImplementation "org.junit.jupiter:junit-jupiter:${junitJupiterVersion}"
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
