@@ -4,11 +4,13 @@ public class TryCatchExample {
     public static void main(String[] args) {
         try {
             System.out.println("try block");
-            System.exit(0);
-        }catch (Exception e) {
+            throw new RuntimeException("some exception");
+//            System.exit(0);
+        } catch (Exception e) {
             System.out.println("catch block");
-        }finally {
+        } finally {
             System.out.println("finally block");
+            new String("");
         }
     }
 /*

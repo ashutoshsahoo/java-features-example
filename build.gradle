@@ -9,13 +9,18 @@ repositories {
 }
 
 ext {
-    lombokVersion = '1.18.26'
-    jmhVersion = '1.35'
-    slf4jApiVersion = '2.0.5'
-    logbackVersion = '1.4.7'
+    lombokVersion = '1.18.30'
+    jmhVersion = '1.37'
+    slf4jApiVersion = '2.0.7'
+    logbackVersion = '1.4.11'
     junitJupiterVersion = '5.10.0'
 }
 
+//java {
+//    toolchain {
+//        languageVersion = JavaLanguageVersion.of(21)
+//    }
+//}
 
 dependencies {
     implementation "org.openjdk.jmh:jmh-core:${jmhVersion}"
@@ -39,4 +44,11 @@ tasks.named('test') {
 
 jar {
     enabled = false
+}
+
+idea {
+    module {
+        downloadJavadoc = true
+        downloadSources = true
+    }
 }

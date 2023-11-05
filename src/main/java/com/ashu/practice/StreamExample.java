@@ -1,11 +1,14 @@
 package com.ashu.practice;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+@Slf4j
 public class StreamExample {
 
     public static void main(String[] args) {
@@ -15,52 +18,70 @@ public class StreamExample {
                 new Employee("Shyam", 35, 15_000),
                 new Employee("Gobind", 25, 10_000)
         );
-//        averageSalary_average(employees);
-//        totalSalary_reduce(employees);
-//        joinNames_joining(employees);
-//        joinNames_toArray(employees);
- //       applySummarizing(employees);
+        averageSalaryAverage(employees);
+        averageSalaryAverage(Collections.emptyList());
+        totalSalaryReduce(employees);
+        joinNamesJoining(employees);
+        joinNamesToArray(employees);
+        applySummarizing(employees);
         printSquareOfNumbersBefore256();
     }
+/*
+03:42:20.965 [main] INFO  com.ashu.practice.StreamExample.averageSalaryAverage(35) - Average Salary : 10000.0
+03:42:20.970 [main] INFO  com.ashu.practice.StreamExample.averageSalaryAverage(35) - Average Salary : 0.0
+03:42:20.972 [main] INFO  com.ashu.practice.StreamExample.totalSalaryReduce(42) - Total Salary : 40000.0
+03:42:20.973 [main] INFO  com.ashu.practice.StreamExample.joinNamesJoining(49) - ashutosh,Ram,Shyam,Gobind
+03:42:20.974 [main] INFO  com.ashu.practice.StreamExample.joinNamesToArray(56) - [ashutosh, Ram, Shyam, Gobind]
+03:42:20.977 [main] INFO  com.ashu.practice.StreamExample.applySummarizing(62) - DoubleSummaryStatistics{count=4, sum=40000.000000, min=5000.000000, average=10000.000000, max=15000.000000}
+03:42:21.000 [main] INFO  com.ashu.practice.StreamExample.lambda$printSquareOfNumbersBefore256$2(68) - 1
+03:42:21.000 [main] INFO  com.ashu.practice.StreamExample.lambda$printSquareOfNumbersBefore256$2(68) - 2
+03:42:21.001 [main] INFO  com.ashu.practice.StreamExample.lambda$printSquareOfNumbersBefore256$2(68) - 4
+03:42:21.001 [main] INFO  com.ashu.practice.StreamExample.lambda$printSquareOfNumbersBefore256$2(68) - 8
+03:42:21.001 [main] INFO  com.ashu.practice.StreamExample.lambda$printSquareOfNumbersBefore256$2(68) - 16
+03:42:21.001 [main] INFO  com.ashu.practice.StreamExample.lambda$printSquareOfNumbersBefore256$2(68) - 32
+03:42:21.001 [main] INFO  com.ashu.practice.StreamExample.lambda$printSquareOfNumbersBefore256$2(68) - 64
+03:42:21.002 [main] INFO  com.ashu.practice.StreamExample.lambda$printSquareOfNumbersBefore256$2(68) - 128
+*/
 
-    private static void averageSalary_average(List<Employee> employees) {
+    private static void averageSalaryAverage(List<Employee> employees) {
         var averageSalary = employees.stream()
                 .mapToDouble(Employee::salary)
                 .average()
-                .orElseThrow(NoSuchElementException::new);
-        System.out.println("Average Salary : " + averageSalary);
+                .orElse(0.0);
+        log.info("Average Salary : {}", averageSalary);
     }
 
-    private static void totalSalary_reduce(List<Employee> employees) {
+    private static void totalSalaryReduce(List<Employee> employees) {
         var totalSalary = employees.stream()
                 .map(Employee::salary)
                 .reduce(0.0, Double::sum);
-        System.out.println("Total Salary : " + totalSalary);
+        log.info("Total Salary : {}", totalSalary);
     }
 
-    private static void joinNames_joining(List<Employee> employees) {
+    private static void joinNamesJoining(List<Employee> employees) {
         String commaSeparatedNames = employees.stream()
                 .map(Employee::name)
                 .collect(Collectors.joining(","));
-        System.out.println(commaSeparatedNames);
+        log.info(commaSeparatedNames);
     }
 
-    private static void joinNames_toArray(List<Employee> employees) {
+    private static void joinNamesToArray(List<Employee> employees) {
         var commaSeparatedNames = employees.stream()
                 .map(Employee::name)
                 .toArray();
-        System.out.println(Arrays.toString(commaSeparatedNames));
+        log.info(Arrays.toString(commaSeparatedNames));
     }
+
     private static void applySummarizing(List<Employee> employees) {
         var stats = employees.stream()
                 .collect(Collectors.summarizingDouble(Employee::salary));
-        System.out.println(stats);
+        log.info("{}", stats);
     }
 
-    private static void printSquareOfNumbersBefore256(){
+    private static void printSquareOfNumbersBefore256() {
         Stream.
                 iterate(1, i -> i < 256, i -> i * 2)
-                .forEach(System.out::println);
+                .forEach(n -> log.info("{}", n));
     }
 }
 
