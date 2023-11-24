@@ -4,6 +4,9 @@ plugins {
     id 'idea'
 }
 
+group 'com.ashu.practice'
+version '1.0.0-SNAPSHOT'
+
 repositories {
     mavenCentral()
 }

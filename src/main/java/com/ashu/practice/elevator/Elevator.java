@@ -5,8 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.TreeSet;
-import java.util.concurrent.PriorityBlockingQueue;
+import java.util.concurrent.ConcurrentSkipListSet;
 
 @Getter
 @Setter
@@ -19,12 +18,12 @@ public class Elevator {
     private State currentState = State.IDLE;
 
     // jobs which are being processed
-    private volatile TreeSet<Request> currentJobs = new TreeSet<>();
+    private ConcurrentSkipListSet<Request> currentJobs = new ConcurrentSkipListSet<>();
 
     // up jobs which can not be processed now, put up in pending queue
-    private TreeSet<Request> upPendingJobs = new TreeSet<>();
+    private ConcurrentSkipListSet<Request> upPendingJobs = new ConcurrentSkipListSet<>();
     // down jobs which can not be processed now, put up in pending queue
-    private TreeSet<Request> downPendingJobs = new TreeSet<>();
+    private ConcurrentSkipListSet<Request> downPendingJobs = new ConcurrentSkipListSet<>();
 
 
     /**
